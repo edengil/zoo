@@ -1,0 +1,2 @@
+const TOW_WEEKS_IN_DAYS = 14;
+ 
