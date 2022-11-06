@@ -1,5 +1,5 @@
 class Animal {
-  constructor(name, species, foodType, dailyAmountOfFood) {
+  constructor(name, foodType) {
     this.name = name;
     this.foodType = foodType;
   }
@@ -7,9 +7,11 @@ class Animal {
     return `Name: ${this.name} eat ${this.foodType.toString()}`
   }
   eat() {
-    console.log(`${this._name}: is full`);
+    console.log(`${this.name}: is full`);
   }
   get food(){
     this.food
   }
 }
+
+

@@ -1,3 +1,7 @@
+const TOW_WEEKS_IN_DAYS = 14;
+const WEEKS = 2
+const DAYS_IN_WEEK = 7 
+
 class Zoo {
     constructor() {
         this.animals = [];
@@ -5,20 +9,29 @@ class Zoo {
     }
     addAnimalFactory(type, name, info) {
         if(type === "Lion"){
-                this.animals.push(new Lion(name, info));
-                this.addTwoWeeksFoodSupply(Lion.food);
+                
+                let lion = new Lion(name, info)
+                this.animals.push(lion);
+                this.addTwoWeeksFoodSupply(lion.foodType);
+
         }else if (type === "Whale"){
-                this.animals.push(new Whale(name, info));
-                this.addTwoWeeksFoodSupply(Whale.food);
+
+                let whale = new Whale(name, info)
+                this.animals.push(whale);
+                this.addTwoWeeksFoodSupply(whale.foodType);
+                
         }else if (type === "Goose"){
-                this.animals.push(new Goose(name, info));
-                this.addTwoWeeksFoodSupply(Goose.food);
+                let goose = new Goose(name, info)
+                this.animals.push(goose);
+                this.addTwoWeeksFoodSupply(goose.foodType);
         }else if (type === "SnowyOwl"){
-                this.animals.push(new SnowyOwl(name, info));
-                this.addTwoWeeksFoodSupply(SnowyOwl.food);
+                let snowy_owl = new SnowyOwl(name, info)
+                this.animals.push(snowy_owl);
+                this.addTwoWeeksFoodSupply(snowy_owl.foodType);
         }else if (type === "ClownFish"){
-                this.animals.push(new ClownFish(name, info));
-                this.addTwoWeeksFoodSupply(ClownFish.food);
+                let clown_fish = new ClownFish(name, info)
+                this.animals.push(clown_fish);
+                this.addTwoWeeksFoodSupply(clown_fish.foodType);
         }else{
                 console.log(`Animal type ${type} is not exists in the world`);
         }
@@ -34,28 +47,30 @@ class Zoo {
     }
     addTwoWeeksFoodSupply(food) {
         const type = food.type;
-        const amount = food.dailyQuantityKG * TOW_WEEKS_IN_DAYS;
+        const amount = food.dailyQuantity * TOW_WEEKS_IN_DAYS;
+
         if (type in this.foodSupply) {
-            this.foodSupply[type] += amount;
+            this.foodSupply[type] += amount;        
         }
         else {
             this.foodSupply[type] = amount;
         }
+
     }
     removeFromSupply(food) {
-        this.foodSupply[food.type] -= food.dailyQuantityKG;
+        this.foodSupply[food.type] -= food.dailyQuantity;
         if (this.foodSupply[food.type] === 0) {
-            this.addTwoWeeksSupply(food);
+            this.addTwoWeeksFoodSupply(food);
         }
     }
     feedAnimalsForTwoWeeks() {
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < WEEKS; i++) {
             console.log(`Week ${i + 1}`);
-            for (let j = 0; j < 7; j++) {
+            for (let j = 0; j < DAYS_IN_WEEK; j++) {
                 console.log(`Day ${j + 1}`);
                 for (let animal of this.animals) {
                     animal.eat();
-                    this.removeFromSupply(animal.food);
+                    this.removeFromSupply(animal.foodType);
                 }
             }
         }

@@ -1,9 +1,11 @@
 class ClownFish extends Fish {
-    food = new Food("Algae",3)
-    constructor(name, lowestDepth, food = ClownFish.food) {
-        super(name, food, lowestDepth);
+    constructor(name, lowestDepth, foodType = new Food("Algae",3)) {
+        super(name, foodType, lowestDepth);
         this.name = name;
         this.lowestDepth = lowestDepth;
-        this.food = food;
+        this.foodType = foodType;
     }
 }
+
+
+
